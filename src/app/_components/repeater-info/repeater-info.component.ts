@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { defaultMarkerInfo, LocatorHelper } from 'src/app/shared/helper/locator.helper';
-import { defalutRepeaterDataLocation, defaultRepeaterData} from 'src/app/shared/services/repeaterPage.service';
+import { defalutRepeaterDataLocation, defaultRepeaterData, RepeatUkeParm} from 'src/app/shared/services/repeaterPage.service';
 
 @Component({
   selector: 'mapy73pl-repeater-info',
@@ -16,6 +16,8 @@ export class RepeaterInfoComponent  {
   @Input() repeaterData = defaultRepeaterData;
   @Input() showMoreData = true
   @Input() showLocationTitle = false
+  @Input() showStatus = false
+  @Input() ukeParam: RepeatUkeParm|null = null
 
   @Input() showDistance = false
   @Input() moveMarker = {...defaultMarkerInfo}

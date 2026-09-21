@@ -8,6 +8,18 @@
     </h2>      
   </ion-col>
 </ion-row>
+<ion-row *ngIf="showStatus">
+  <ion-col  size="4" size-sm="6">Status</ion-col>
+  <ion-col size="8" size-sm="6">
+    <mapy73pl-repeater-info-status [status]="repeaterData.s"></mapy73pl-repeater-info-status>
+  </ion-col>
+</ion-row> 
+<ion-row *ngIf="showStatus && ukeParam">
+  <ion-col  size="4" size-sm="6"><a href="{{ukeParam.u}}" target="_blank">{{ukeParam.l}}</a></ion-col>
+  <ion-col size="8" size-sm="6">
+    do {{ukeParam.d}} 
+  </ion-col>
+</ion-row> 
 <ion-row *ngIf="repeaterData!.tx &&  repeaterData!.rx" >
   <ion-col  size="4" size-sm="6">Częstotliwość ({{bandName}})</ion-col>
   <ion-col size="8" size-sm="6">
@@ -58,7 +70,7 @@
       <ion-text  color="secondary">{{group}} </ion-text>
     } 
   </ion-col>
-</ion-row> 
+</ion-row>   
 <ion-row *ngIf="showLocationTitle">
   <ion-col >
     <h3>Lokalizacja</h3>      
@@ -113,7 +125,7 @@
       <a [href]="url" target="_blank" >{{url}}</a>
    }
   </ion-col>
-</ion-row>        
+</ion-row>      
   <!-- <ion-row >
     <ion-col >Na tej samej częstotliwości</ion-col>
     <ion-col>(dane w przygotowaniu)</ion-col>

@@ -8,6 +8,18 @@
   </ion-col>
 </ion-row>
 @for (band of bands; track band; let key = $index) {
+  <ion-row *ngIf="key === 0 && repeatersBand[key]?.rx">
+    <ion-col  size="4" size-sm="6">Status</ion-col>
+    <ion-col size="8" size-sm="6">
+      <mapy73pl-repeater-info-status [status]="repeatersBand[key]!.s"></mapy73pl-repeater-info-status>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="key === 0 && repeatersBand[key]?.rx  && ukeParam">
+    <ion-col  size="4" size-sm="6"><a href="{{ukeParam.u}}" target="_blank">{{ukeParam.l}}</a></ion-col>
+    <ion-col size="8" size-sm="6">
+      do {{ukeParam.d}} 
+    </ion-col>
+  </ion-row>     
   <ion-row *ngIf="repeatersBand[key]?.tx || repeatersBand[key]?.rx" >
     <ion-col size="4" size-sm="6">Częstotliwość ({{band}})</ion-col>
     <ion-col size="8" size-sm="6">
@@ -91,6 +103,7 @@
   [repeaterDataLocation]="masterRepDataLocation"
   [showLocationTitle]="showMoreData"
   [showDistance]="showDistance"
+  [showStatus]="false"
   [moveMarker]="moveMarker"
   (needShowRadio)="needShowRadio.emit()"  
   ></mapy73pl-repeater-info>   

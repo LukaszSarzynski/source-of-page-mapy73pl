@@ -9,12 +9,13 @@ import { RepeaterInfoComponent } from './repeater-info.component';
 import { RepeaterInfoActivationComponent } from './activation/activation.component';
 import { RepeaterInfoCrossBandsComponent } from './cross-band/cross-band.component';
 import { RepeaterInfoTypeComponentModule } from '../repeater-info-type/type.module';
+import { RepeaterInfoStatusComponentModule } from '../repeater-info-status/status.module';
 
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule, RouterModule, RepeaterInfoTypeComponentModule],
+  imports: [ CommonModule, FormsModule, IonicModule, RouterModule, RepeaterInfoTypeComponentModule, RepeaterInfoStatusComponentModule],
   // declarations: [RepeaterInfoComponent, RepeaterInfoStatusComponent, RepeaterInfoTypeComponent,RepeaterInfoActivationComponent],
-  declarations: [RepeaterInfoComponent, RepeaterInfoCrossBandsComponent,RepeaterInfoActivationComponent],
+  declarations: [RepeaterInfoComponent, RepeaterInfoCrossBandsComponent,RepeaterInfoActivationComponent], 
   exports: [RepeaterInfoComponent, RepeaterInfoCrossBandsComponent]
 })
 export class RepeaterInfoComponentModule {}

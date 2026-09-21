@@ -1,0 +1,20 @@
+@switch (status) {
+  @case (repeaterStatus.WORKING) {
+    działający
+  }
+  @case (repeaterStatus.DISABLED) {
+    wyłączony
+  }
+  @case (repeaterStatus.UNKNOWN) {
+    nieznany
+  }
+  @case (repeaterStatus.TESTING) {
+    testy
+  }
+  @case (repeaterStatus.BUILDING) {
+    budowany
+  }
+  @case (repeaterStatus.PLANNED) {
+    planowany
+  }
+}
