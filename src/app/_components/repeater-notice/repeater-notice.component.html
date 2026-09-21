@@ -1,0 +1,20 @@
+
+<ion-text color="dark">
+  <div class="notice-text" (click)="showInstruction = !showInstruction">
+    <ion-icon name="logo-discord" aria-hidden="true" size="large"></ion-icon> 
+    <span *ngIf="!showInstruction">Zgłoś błąd</span>
+    <span *ngIf="showInstruction">Jak zgłosić błąd?</span>
+  </div>
+  <div class="notice-instructions" *ngIf="showInstruction">
+    0. Dołącz do serwera Discord Krotkofalarstwo <a href="https://discord.com/invite/krotkofalarstwo-958356886896386088" target="_blank">https://discord.com/invite/krotkofalarstwo-958356886896386088</a><br>
+    1. Opisz problem na właściwym kanale. <br>
+    <ion-text color="medium" class="notice-more-info">
+      Dla przemiennika {{i}} będzie to <a href="{{chanels[idChanel].link}}" target="_blank">{{chanels[idChanel].chanel}}</a><br>
+    </ion-text>
+    <ion-text color="dark" class="notice-more-info">
+      dodając na końcu wiadomości tekst: <code class="notice-tag">[mapy73.pl] [{{i}}] &#64;hotel_foxtrot_tango_echo</code>
+    </ion-text>    
+    
+  </div>
+  
+</ion-text>

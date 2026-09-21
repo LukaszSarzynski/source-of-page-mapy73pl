@@ -18,6 +18,8 @@
               *ngIf="returnRepeaterData(band,repBandKey[band])?.rx && returnRepeaterData(band,repBandKey[band])?.tx"
                 [bandName]="band"
                 [repeaterData]="returnRepeaterData(band,repBandKey[band])"
+                [showStatus]="true"
+                [ukeParam]="repeaterData.k ? repeaterData.k : null"
                 ></mapy73pl-repeater-info>
             }
           }            
@@ -36,6 +38,7 @@
           <mapy73pl-repeater-info-cross-band 
             [repeaterBandKey]="repeaterBandKey"
             [repeaterAllData]="repeaterData"
+            [ukeParam]="repeaterData.k ? repeaterData.k : null"
             ></mapy73pl-repeater-info-cross-band>
           </ion-grid>
       
@@ -53,18 +56,36 @@
           </ion-col>
           <ion-col class="info" >{{repeaterData.o}}</ion-col>
         </ion-row> 
-      </ion-grid>  
+      </ion-grid>   
 
       <ion-grid class="m73-flex-between" [fixed]="true">
         <ion-button *ngIf="canShowOnMap" fill="clear" (click)="showRepeaterOnMap()">
           Pokaż przemiennik
         </ion-button>
-        <ion-button (click)="showAllRepeaterOnMap()">
-          <ion-icon slot="start" name="map-outline" aria-hidden="true"></ion-icon>
-          Pokaż inne przemienniki
-        </ion-button>
+        @if(showFMPolandLink) {
+          <ion-button [routerLink]="['/repeaters-type','fm-poland','all']">
+            Przemienniki FM Poland
+          </ion-button>
+        }
+        @if(showDmrLink) {
+          <ion-button [routerLink]="['/repeaters-type','dmr',repeaterData.c]">
+            DMR {{dmrLinkCategory}}
+          </ion-button>
+        }
+        @if(!showFMPolandLink && !showDmrLink) {
+          <ion-button (click)="showAllRepeaterOnMap()">
+            <ion-icon slot="start" name="map-outline" aria-hidden="true"></ion-icon>
+            Mapa przemienników
+          </ion-button>
+        }        
       </ion-grid>
 
+      <ion-grid class="m73-flex-between" [fixed]="true">
+        <m73pl-repeater-notice
+          [i]="repeaterData.i"
+        ></m73pl-repeater-notice>
+      </ion-grid>          
+      <div class="end-page-margin">&nbsp;</div>      
 
   } @else {
     <ion-grid [fixed]="true" class="rpt-info-loading">

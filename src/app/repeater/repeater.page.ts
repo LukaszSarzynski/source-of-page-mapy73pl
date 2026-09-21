@@ -6,6 +6,9 @@ import { FilterService } from '../shared/services/filter.service';
 import { defalutRepeaterAllData, RepeaterAllData, RepeaterBandKey, RepeaterData, RepeatersPageService } from '../shared/services/repeaterPage.service';
 import { SubSink } from 'subsink';
 import { LocatorHelper } from '../shared/helper/locator.helper';
+import { dmrLink } from '../start-page/start-page.page';
+
+const allowedDmr: dmrLink[] = require("../type/dmr-allowed.json");
 
 
 @Component({
@@ -22,6 +25,12 @@ export class RepeaterPage implements OnInit, OnDestroy{
   public canShowOnMap = true;
 
   public loaded = false;
+
+  showFMPolandLink = false;
+  showDmrLink = false;
+  allowedDmrCountry: string[] = allowedDmr.map(o => o.c)
+  dmrCountryName: string[] = allowedDmr.map(o => o.name)  
+  dmrLinkCategory = ''
 
   private subSink = new SubSink();
   
@@ -54,7 +63,7 @@ export class RepeaterPage implements OnInit, OnDestroy{
       },
       error: (e) => {
         //console.log('error',e)
-        this.route.navigate(['/']);
+        this.route.navigate(['/przemienniki-krotkofalarskie.jpeg']);
       },
     })   
 
@@ -77,7 +86,7 @@ export class RepeaterPage implements OnInit, OnDestroy{
   showRepeaterOnMap() {
     this.filterService.setLastFilterDataRptToRepeater(this.repeaterData)
      setTimeout(() => {
-      this.route.navigate(['/przemienniki']);
+      this.route.navigate(['/mapa-przemiennikow']);
     },20)    
     // setTimeout(() => {
     //   window.dispatchEvent(new Event('resize')); 
@@ -88,21 +97,21 @@ export class RepeaterPage implements OnInit, OnDestroy{
     //this.repeaterMapService.getRepeaterByFilterData(this.filterDataRptr)
     this.filterService.setInitFilterDataRptr()
      setTimeout(() => {
-      this.route.navigate(['/przemienniki']);
+      this.route.navigate(['/mapa-przemiennikow']);
     },20)    
     // setTimeout(() => {
     //   window.dispatchEvent(new Event('resize')); 
     // },300)      
   }
 
-  goToHome() {
-    setTimeout(() => {
-      this.route.navigate(['/']);
-    },20)    
-    // setTimeout(() => {
-    //   window.dispatchEvent(new Event('resize')); 
-    // },300)  
-  }
+  // goToHome() {
+  //   setTimeout(() => {
+  //     this.route.navigate(['/']);
+  //   },20)    
+  //   // setTimeout(() => {
+  //   //   window.dispatchEvent(new Event('resize')); 
+  //   // },300)  
+  // }
 
   returnBands(repBandKey: RepeaterBandKey): string[] {
     // console.log(Object.keys(repBandKey))
@@ -141,15 +150,26 @@ export class RepeaterPage implements OnInit, OnDestroy{
     let type = ''
     bands.forEach(band => {
       this.repeaterData.x[band].forEach(rep =>{
-        if(!type.length && rep.t.includes('e')) {
+        if(!type.length && rep.t.includes('e')) { 
           type = 'DMR'
-        } else if (!type.length && rep.t.includes('a')) {
+        }  else if (!type.length && rep.t.includes('a')) {
           type = 'FM'
         } else if(!type.length && rep.t.includes('i')) {
           type = 'FM'
         } else if(!type.length && rep.t.includes('j')) {
           type = 'FM'
         }
+        
+        if(rep.t.includes('e')) {
+          const idAllowedKey = this.allowedDmrCountry.indexOf(this.repeaterData.c)
+          if(idAllowedKey > -1) {
+            this.dmrLinkCategory = this.dmrCountryName[idAllowedKey]
+            this.showDmrLink = true;
+          }             
+        } else if(rep.t.includes('j')) {
+          this.showFMPolandLink = true;
+        }
+
         const r = rep?.rx?.f
         if(r){
           rx[r] = ''

@@ -8,6 +8,7 @@ import { RepeaterPageRoutingModule } from './repeater-routing.module';
 import { RepeaterInfoComponentModule } from '../_components/repeater-info/repeater-info.module';
 import { RepeaterPage } from './repeater.page';
 import { MainToolbarComponentModule } from '../_components/main-toolbar/main-toolbar.module';
+import { RepeaterNoticeComponentModule } from '../_components/repeater-notice/repeater-notice.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { MainToolbarComponentModule } from '../_components/main-toolbar/main-too
     IonicModule,
     RepeaterInfoComponentModule,
     RepeaterPageRoutingModule,
-    MainToolbarComponentModule
+    MainToolbarComponentModule,
+    RepeaterNoticeComponentModule
   ],
   declarations: [RepeaterPage]
 })
