@@ -14,15 +14,27 @@ export class DataService {
   public messages: Message[] = [
     {
       subject: 'Co robię teraz?',
-      detalis: 'Zmieniam wygląd strony',
+      detalis: 'Dodawanie dat pozwoleń na urządzenia bezobsługowe w Polsce',
       date: '',
       read: true
     },
     {
+      subject: 'Lista przemienników DMR i FM Poland',
+      detalis: 'Dla przemienników FM Poland i DMR (wybrane kraje) dodano lisę oraz możliwość zobaczenia ich odrazu na mapie',
+      date: '2025-12-01',
+      read: false
+    },        
+    {
+      subject: 'Statusy przemienników i testy zgłaszania błędów',
+      detalis: 'Dodano informację o aktualnym statusie przemiennika (planowany/budowany/testowy/nieznany/działający/wyłączony). Na stronie każdego przemiennika dodano opis jak zgłaszać błedy, obecnie obowiązuje tryb zgłaszania przez discorda, potem wyciągnie się jakieś wnioski. Na razie mała próba czy ma to sens.',
+      date: '2025-11-24',
+      read: true
+    },       
+    {
       subject: 'Przemienniki w zasięgu',
       detalis: 'Ograniczenie filtrowanych przemienników do zadanego promienia, np 100km od wskazanej pozycji. W rozwijanym menu po lewej stronie dodano opcje "ogranicz do ..km" po jej zaznaczeniu zmiejszymy obszar fitrowania do zadanego promienia, maksymalną odległośc od przemiennika ustawiamy suwakiem poniżej.',
       date: '2025-06-25',
-      read: false
+      read: true
     },      
     {
       subject: 'DMR na wakacjach',

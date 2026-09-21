@@ -40,7 +40,7 @@ export class FilterService {
     this.lastFilterDataRptr.next(defaultFilterDataRptr)
   }
 
-    public setLastFilterDataRptToRepeater(rep: RepeaterAllData) {
+  public setLastFilterDataRptToRepeater(rep: RepeaterAllData) {
 
       let types: {[keys:string]: string} = {}
       const bands = Object.keys(rep.x)
@@ -63,8 +63,6 @@ export class FilterService {
   }
 
   public setLastFilterDataRptToRepeaterExport(exportList: ExportList) {
-
-
     this.lastFilterDataRptr.next({
       text: '"'+exportList.i+'"',
       country: [exportList.c],
@@ -72,8 +70,24 @@ export class FilterService {
       type: [...exportList.m],
       band: [exportList.b],
       range: {...defaultRadioRange}
-  })
-}  
+    })
+  }  
+
+  public setFmPolandFilterDataRptr(country: string[]) {
+    this.lastFilterDataRptr.next({
+      ...markAllStatusBandFilterDataRptr,
+      type: ['j'],
+      country,
+    })
+  }   
+
+  public setDMRFilterDataRptr(country: string[]) {
+    this.lastFilterDataRptr.next({
+      ...markAllStatusBandFilterDataRptr,
+      type: ['e'],
+      country,
+    })
+  }   
 
   // export interface RepeaterInfo {
   //   i: string; //name
@@ -122,6 +136,12 @@ export const defaultFilterDataRptr: FilterDataRptr = {
   type: ['a','e','i','j'],
   band: ['2m','70cm','23cm'],
   range: {...defaultRadioRange}
+}
+
+export const markAllStatusBandFilterDataRptr: FilterDataRptr = {
+  ...defaultFilterDataRptr,
+  status: ['6','5','4','3','2','1'],
+  band: ['10m','6m','4m','2m','70cm','23cm'],
 }
 
 export interface FilterDataRptr {

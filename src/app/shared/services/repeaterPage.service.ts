@@ -6,6 +6,7 @@ import { RptrPatch } from './user.service';
 import { ExportList } from '../helper/export.helper';
 import { environment } from 'src/environments/environment';
 import { LocatorHelper } from '../helper/locator.helper';
+import { RepeaterType } from '../types/repeater-type';
 
 @Injectable({
   providedIn: 'root'
@@ -103,6 +104,62 @@ export class RepeatersPageService {
 
     })
     return tmpExLst
+  }
+
+  getAllFmPoland(): OneInfo[] {
+    let found: OneInfo[] = []
+    const aKeys = Object.keys(this.obRepeatersAllData)
+    aKeys.forEach(rptKey => {
+      const rpt = this.obRepeatersAllData[rptKey]
+      const aBands = Object.keys(rpt.x)
+      aBands.forEach(band => {
+        rpt.x[band].forEach(option => {
+          if(option.t.includes(RepeaterType.FM_POLAND)) {
+            const rptInfo: OneInfo = {
+              ...defaultOneInfo,
+              i: rpt.i,
+              x: option?.tx?.f ? option?.tx?.f : 0,
+              s: option.s,
+              p: rpt.h[option.h].p
+            }
+
+            found.push(rptInfo)
+          }
+        })
+      })
+    })
+
+    return this.sortOneInfo(found)
+  }
+
+  getDMR(country: string): OneInfo[] {
+    let found: OneInfo[] = []
+    const aKeys = Object.keys(this.obRepeatersAllData)
+    aKeys.forEach(rptKey => {
+      const rpt = this.obRepeatersAllData[rptKey]
+      const aBands = Object.keys(rpt.x)
+      aBands.forEach(band => {
+        rpt.x[band].forEach(option => {
+          if(rpt.c === country && option.t.includes(RepeaterType.DMR)) {
+            const rptInfo: OneInfo = {
+              ...defaultOneInfo,
+              i: rpt.i,
+              x: option?.tx?.f ? option?.tx?.f : 0,
+              s: option.s,
+              p: rpt.h[option.h].p
+            }
+
+            found.push(rptInfo)
+          }
+        })
+      })
+    })
+
+    return this.sortOneInfo(found)
+  }  
+
+  private sortOneInfo(array: OneInfo[]) {
+    return array.sort((a,b) => (a.i < b.i) ? 1 : ((b.i < a.i) ? -1 : 0))
   }
 
   private getColorCodebyRepeaterData(repeaterData: RepeaterData) {
@@ -305,7 +362,14 @@ export interface RepeaterAllData {
   h: RepeaterDataHash,
   x: RepeaterBand,
   r?: RepeaterBandKey[][]
+  k?: RepeatUkeParm; //uke info
 } 
+
+export interface RepeatUkeParm {
+  u: string; //url do strony uke
+  l: string; //licencja
+  d: string; //data konca lincencji
+}
 
 interface RepeaterDataHash {
   [key: string]: RepeaterDataLocation //key:(localization hash)
@@ -373,6 +437,22 @@ interface RepeaterActivationParm {
 }
 
 
+export interface OneInfoShort {
+  i: string; //id
+  p: string; //place QTH
+  x: number; //tx
+}
+
+export interface OneInfo extends OneInfoShort {
+  s: string; // status
+}
+
+const defaultOneInfo: OneInfo = {
+  i: '',
+  p: '',
+  x: 0,
+  s: '1'
+}
 
 // export interface InTes {
 //   [key: string]: InBan;

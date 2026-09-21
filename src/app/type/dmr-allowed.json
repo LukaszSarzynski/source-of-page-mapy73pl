@@ -1,0 +1,19 @@
+[
+  {"c": "pl", "name": "w Polsce"},
+  {"c": "cz", "name": "w Czechach"},
+  {"c": "sk", "name": "w Słowacji"},
+  {"c": "at", "name": "w Austrii"},
+  {"c": "au", "name": "w Australii"},
+  {"c": "bg", "name": "w Bułgarii"},
+  {"c": "hr", "name": "w Chorwacji"},
+  {"c": "ee", "name": "w Estonii"},
+  {"c": "gr", "name": "w Grecji"},
+  {"c": "nl", "name": "w Holandii"},
+  {"c": "lt", "name": "na Litwie"},
+  {"c": "nz", "name": "w Nowej Zelandii"},
+  {"c": "ro", "name": "w Rumunii"},
+  {"c": "si", "name": "w Słowenii"},
+  {"c": "ua", "name": "w Ukrainie"},
+  {"c": "hu", "name": "na Węgrzech"},
+  {"c": "lv", "name": "na Łotwie"}
+]

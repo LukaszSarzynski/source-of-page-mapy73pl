@@ -141,3 +141,14 @@ ion-button[ion-fab] {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.card-inside-center {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.end-page-margin {
+  margin-bottom: 120px;;
+}

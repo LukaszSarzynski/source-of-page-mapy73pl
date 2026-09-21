@@ -47,14 +47,14 @@
 
   <ng-content *ngIf="isDekstop">
     <ion-buttons [collapse]="true" slot="start">
-      <ion-back-button ></ion-back-button>
+      <!-- <ion-back-button ></ion-back-button> -->
       <ion-button *ngIf="showInfo && offlineReady && isOnline" [routerLink]="['/page','offline']"  routerDirection="root" aria-label="Tryb offline aktywny">
         <ion-icon slot="icon-only" name="radio-outline" aria-hidden="true" ></ion-icon>
       </ion-button> 
     </ion-buttons>  
     <ion-title >
-      <span *ngIf="!isOnline" class="action" [routerLink]="['/']" routerDirection="root">(Offline) </span>
-      <span class="action" [routerLink]="['/']" routerDirection="root">Mapy73pl</span>
+      <span *ngIf="!isOnline" class="action" [routerLink]="['przemienniki-krotkofalarskie.jpeg']" routerDirection="root">(Offline) </span>
+      <span class="action" [routerLink]="['/przemienniki-krotkofalarskie.jpeg']" routerDirection="root">Mapy73pl</span>
       <span *ngIf="showInfo" >
         @if (repCount > 1 ) {
           @if (repCount > 4 ) {
@@ -78,8 +78,8 @@
     <ion-button *ngIf="showInfo && offlineReady && isOnline" [routerLink]="['/page','offline']"  routerDirection="root" aria-label="Tryb offline aktywny">
       <ion-icon slot="icon-only" name="radio-outline" aria-hidden="true" ></ion-icon>
     </ion-button>     
-    <span *ngIf="!isOnline" class="action" [routerLink]="['/']" routerDirection="root">(Offline)&nbsp;</span>
-    <span *ngIf="!showInfo" class="action" [routerLink]="['/']" routerDirection="root">Mapy73pl</span>
+    <span *ngIf="!isOnline" class="action" [routerLink]="['/przemienniki-krotkofalarskie.jpeg']" routerDirection="root">(Offline)&nbsp;</span>
+    <span *ngIf="!showInfo" class="action" [routerLink]="['/przemienniki-krotkofalarskie.jpeg']" routerDirection="root">Mapy73pl</span>
     <span *ngIf="showInfo" >
       @if (repCount > 1 ) {
         

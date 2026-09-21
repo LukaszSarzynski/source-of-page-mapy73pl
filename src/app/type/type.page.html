@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <mapy73pl-main-toolbar></mapy73pl-main-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  @if (loaded) {
+    <ion-grid [fixed]="true" class="ov-hidden" >
+      <ion-card class="card-inside-center">
+        <ion-card-header>
+          <ion-card-title><h1>{{hTitle}} {{hTitleSufix}}</h1></ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div *ngFor="let rpt of repeters">
+            <a [routerLink]="repeaterLink(rpt.i)">{{rpt.i}}</a>
+            <div class="rpt-status"><mapy73pl-repeater-info-status [status]="rpt.s"></mapy73pl-repeater-info-status></div>
+            <span *ngIf="rpt.x"> {{rpt.x.toFixed(4)}} MHz</span>,  {{rpt.p}}
+          </div>       
+          <ng-container *ngIf="typeFromUrl === 'fm-poland'">
+            <div class="link-to-map"><a  [routerLink]="['/repeaters-map-create','fm-poland','pl']">Mapa <strong>FM Poland</strong> w Polsce</a></div>
+            <div class="link-to-map"><a  [routerLink]="['/repeaters-map-create','fm-poland','us']">Mapa <strong>FM Poland</strong> w USA</a></div>
+          </ng-container>   
+          <ng-container *ngIf="typeFromUrl === 'dmr'">
+            <div class="link-to-map"><a  [routerLink]="['/repeaters-map-create','dmr',countryFromUrl]">Mapa <strong>DMR</strong> {{hTitleSufix}}</a></div>
+          </ng-container>             
+        </ion-card-content>
+      </ion-card>        
+      <div class="end-page-margin">&nbsp;</div>
+    </ion-grid>    
+  } @else {
+    <ion-grid [fixed]="true" class="rpt-info-loading">
+      <ion-row >
+        <ion-col >
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+            </p>
+        </ion-col>
+      </ion-row>     
+      <ion-row >
+        <ion-col >
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 70%;"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 90%;"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </p>  
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 90%;"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </p>                       
+        </ion-col>
+      </ion-row>        
+    </ion-grid>
+    }  
+</ion-content>

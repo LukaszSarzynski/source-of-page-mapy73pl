@@ -25,7 +25,7 @@ export class OfflinePage implements OnInit {
   ngOnInit() {
     this.subSink.sink = this.userSaveService.getObsOfflineReady().subscribe({next:(status) => {
       if(status === false) {
-        this.route.navigate(['/']);
+        this.route.navigate(['/mapa-przemiennikow']);
       }
     }})   
   }

@@ -3,7 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'przemienniki',
+    path: 'przemienniki-krotkofalarskie.jpeg',
+    loadChildren: () => import('./start-page/start-page.module').then( m => m.StartPagePageModule)
+  },  
+  {
+    path: 'repeaters-type/:type/:country',
+    loadChildren: () => import('./type/type.module').then( m => m.TypePageModule)
+  },  
+  {
+    path: 'mapa-przemiennikow',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -18,16 +26,15 @@ const routes: Routes = [
     path: 'export',
     loadChildren: () => import('./export/export.module').then( m => m.ExportPageModule)
   },  
-  // {
-  //   path: '',
-  //   redirectTo: 'przemienniki',
-  //   pathMatch: 'full'
-  // },
+
   {
     path: '',
-    loadChildren: () => import('./static/start/start.module').then( m => m.StartPageModule)
+    redirectTo: 'przemienniki-krotkofalarskie.jpeg',
+    pathMatch: 'full'
   },
-  {path: '**', redirectTo: 'przemienniki'},
+  {path: '**', redirectTo: 'przemienniki-krotkofalarskie.jpeg'},
+
+
 
   // {
   //   path: '',

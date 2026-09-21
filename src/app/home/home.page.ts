@@ -14,7 +14,6 @@ import { RepeaterBand } from '../shared/types/repeater-band';
 import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
 import { Meta, Title } from '@angular/platform-browser';
-import { TITLE_BASE, TITLE_SEP } from '../shared/const';
 import { MapComponent } from '../_components/map/map.component';
 import { RepeaterMapService, RepeatersMap } from '../shared/services/repeaterMap.service';
 import { defalutRepeaterAllData, defalutRepeaterDataLocation, defaultRepeaterData, RepeaterBandKey, RepeatersPageService } from '../shared/services/repeaterPage.service';
@@ -100,6 +99,8 @@ export class HomePage implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    this.title.setTitle('Mapa przemiennikow krotkofalarskich')
+
     //console.log('init')
     this.subSink.sink = this.filterService.getObsLastFilterDataRptr().subscribe({next:(lastFilterDataRptr: FilterDataRptr) => {
       this.filterDataRptr = {...lastFilterDataRptr}
@@ -153,7 +154,6 @@ export class HomePage implements OnInit,OnDestroy {
       this.filterDataRptr.range.radioLocator = this.moveMarker.l
     }
 
-    this.title.setTitle('Przemienniki krótkofalarskie ' + TITLE_SEP + TITLE_BASE)
     this.isFilterOpen = true;   
 
     this.updateMetaDescription();
