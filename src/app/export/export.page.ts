@@ -38,7 +38,7 @@ export class ExportPage implements OnInit {
   ngOnInit() {
     this.subSink.sink = this.userSaveService.getObsSavedPathCount().subscribe({next:(count) => {
       if(count < 1) {
-        this.route.navigate(['/']);
+        this.route.navigate(['/mapa-przemiennikow']);
       } else {
         this.exportsList = this.repeatersPageService.getExportList(this.userSaveService.getSavedPath())
         //console.log(this.userSaveService.getSavedPath())
@@ -74,7 +74,7 @@ export class ExportPage implements OnInit {
     //console.log(exportList)
     this.filterService.setLastFilterDataRptToRepeaterExport(exportList)
      setTimeout(() => {
-      this.route.navigate(['/przemienniki']);
+      this.route.navigate(['/mapa-przemiennikow']);
     },20)    
     // setTimeout(() => {
     //   window.dispatchEvent(new Event('resize')); 

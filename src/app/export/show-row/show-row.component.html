@@ -2,10 +2,10 @@
   <ion-col size="4" size-sm="4" size-md="2">{{nr}}.
     <span  class="m73-link" (click)="nameClicked.emit()">{{exportList.i}}</span></ion-col>
   <ion-col size="8" size-sm="4" size-md="3">
-    <ion-button *ngIf="exportList.a" (click)="mapClicked.emit()" aria-label="Pokaz na mapie">
-      <ion-icon slot="icon-only"   name="map-outline" aria-hidden="true"></ion-icon>
+    <ion-button *ngIf="exportList.a" fill="clear" (click)="mapClicked.emit()" aria-label="Pokaz na mapie">
+      <ion-icon slot="icon-only"  name="map-outline" aria-hidden="true"></ion-icon>
     </ion-button>
-    <ion-button *ngIf="!exportList.a" [disabled]="true" aria-label="Brak lokalizacji">
+    <ion-button *ngIf="!exportList.a" fill="clear" [disabled]="true" aria-label="Brak lokalizacji">
       <ion-icon slot="icon-only"   name="map-outline" aria-hidden="true"></ion-icon>
     </ion-button>    
     {{exportList.p}}

@@ -2,31 +2,17 @@
   <mapy73pl-main-toolbar></mapy73pl-main-toolbar>
 </ion-header>
 
-<ion-content color="light" >
+<ion-content color="light"  class="ion-padding" >
   @if (loaded) {  
-    <ion-list>
-      <ion-list-header>
-        <ion-label>Export przemienników</ion-label>
-        <ion-button id="popover-button" fill="solid" color="primary"  size="small" >Export</ion-button>
-        <ion-popover trigger="popover-button" [dismissOnSelect]="true">
-          <ng-template>
-            <ion-content>
-              <ion-list>
-                <ion-item (click)="createCSV()" [button]="true" [detail]="false">LibreOffice/Excel (*.CSV)</ion-item>
-                <ion-item (click)="createCHIRP()" [button]="true" [detail]="false">CHIRP (*.CSV)</ion-item>
-                <ion-item (click)="createIcom()" [button]="true" [detail]="false">Icom (*.CSV)</ion-item>
-                <ion-item (click)="createYaesu()" [button]="true" [detail]="false">Yaesu (*.CSV)</ion-item>
-                <ion-item (click)="createOpenGD77()" [button]="true" [detail]="false">OpenGD77 (*.ZIP)</ion-item>
-              </ion-list>
-            </ion-content>
-          </ng-template>
-        </ion-popover>
-
-      </ion-list-header>    
-    </ion-list>
-
-    <!-- <ion-button fill="solid" color="success"  size="small" (click)="createCSV()">Test csv</ion-button> -->
-
+      <ion-grid class="m73-flex-between " [fixed]="true">
+        <h2>Export przemienników</h2>
+          <ion-button class="btn-h" id="export-top" fill="solid" color="primary" size="small">Export</ion-button>
+          <ion-popover trigger="export-top" [dismissOnSelect]="true">
+            <ng-template>
+              <ng-container *ngTemplateOutlet="greet"></ng-container>
+            </ng-template>
+          </ion-popover>
+      </ion-grid>
     <ion-grid [fixed]="true" >
       @for (exportList of exportsList; track exportList; let idx = $index) {
         <mapy73pl-export-row 
@@ -35,7 +21,19 @@
           (nameClicked)="goToRepeaterInfo(exportList.i)"
           (mapClicked)="showRepeaterOnMap(exportList)"
           ></mapy73pl-export-row>
-      }    
+      }   
+      <div class="m73-flex-between">
+        <div></div>
+        <div>
+          <ion-button id="export-bottom" fill="solid" color="primary" size="medium">Export</ion-button>
+          <ion-popover trigger="export-bottom" [dismissOnSelect]="true">
+            <ng-template>
+              <ng-container *ngTemplateOutlet="greet"></ng-container>
+            </ng-template>
+          </ion-popover>
+        </div>
+      </div>
+    <div class="end-page-margin">&nbsp;</div>       
     </ion-grid>    
   } @else {    
     <div class="exp-loading">
@@ -43,3 +41,16 @@
     </div>
   }    
 </ion-content>
+
+<ng-template #greet>
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="createCSV()" [button]="true" [detail]="false">LibreOffice/Excel (*.CSV)</ion-item>
+      <ion-item (click)="createCHIRP()" [button]="true" [detail]="false">CHIRP (*.CSV)</ion-item>
+      <ion-item (click)="createIcom()" [button]="true" [detail]="false">Icom (*.CSV)</ion-item>
+      <ion-item (click)="createYaesu()" [button]="true" [detail]="false">Yaesu (*.CSV)</ion-item>
+      <ion-item (click)="createOpenGD77()" [button]="true" [detail]="false">OpenGD77 (*.ZIP)</ion-item>
+    </ion-list>
+  </ion-content>
+</ng-template>
+
