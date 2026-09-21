@@ -1,0 +1,136 @@
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.biger-on-screen {
+  @media only screen and (min-width: 768px) {
+    scale: 1.5;
+  }  
+  @media only screen and (min-width: 1200px) {
+    scale: 2;
+  }
+  
+}
+
+.btn-fmLink {
+  float: right;
+  margin: 20px;
+}
+
+.img-map {
+  max-width: 40vw;
+}
+
+.ov-hidden {
+  overflow: hidden;
+}
+
+.box-db-update-info {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tite-box{
+  background-color: var(--ion-color-base);;
+  
+  text-align: center;
+
+  padding: 40px 0 10px 0;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+  }
+}
+
+.ul {
+  width: 100%;
+  height: 320px;
+  padding: 10px;
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  columns: 1;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+.li {
+  list-style-type: none;
+
+  display: inline-block;
+  height: 100%;
+  width: 240px;
+  padding: 20px;
+  margin: 0 10px;
+
+  text-align: left;
+}
+
+.ul::column {
+  scroll-snap-align: center;
+}
+.ul::scroll-button(*) {
+  border: 0;
+  font-size: 2rem;
+  background: none;
+  color: #216afc;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.ul::scroll-button(*):hover,
+.ul::scroll-button(*):focus {
+  opacity: 1;
+}
+
+.ul::scroll-button(*):active {
+  translate: 1px 1px;
+}
+
+.ul::scroll-button(*):disabled {
+  opacity: 0.2;
+  cursor: unset;
+}
+
+.ul {
+  anchor-name: --my-carousel;
+}
+
+.ul::scroll-button(*) {
+  position: absolute;
+  position-anchor: --my-carousel;
+}
+
+.ul {
+  scroll-marker-group: after;
+}
+
+.ul::scroll-marker-group {
+  position: absolute;
+  position-anchor: --my-carousel;
+  top: calc(anchor(bottom) - 70px);
+  justify-self: anchor-center;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.ul::column::scroll-marker {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 2px solid #216afc;
+  border-radius: 10px;
+}
+
+.ul::column::scroll-marker:target-current {
+  background-color: #216afc;
+}
+
+
+
+.fmpoland-show-all{ 
+  text-align: right;
+  margin-top: 20px;
+}

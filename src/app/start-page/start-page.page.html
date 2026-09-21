@@ -1,0 +1,74 @@
+<ion-header [translucent]="true">
+  <mapy73pl-main-toolbar></mapy73pl-main-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid [fixed]="true" class="ov-hidden" >
+    <div class="flex-center">
+      <ion-img
+        src="/assets/przemienniki-mapa.WebP"
+        alt="Przemienniki na mapie Polski"
+        class="img-map"
+      ></ion-img>
+     <ion-text class="biger-on-screen" color="primary">
+      <div class="flex-center"><ion-button (click)="showAllRepeaterOnMap()" class="ion-text-wrap">Znajdź</ion-button> na mapie </div>
+      <div>&nbsp;&nbsp;&nbsp; najbliższy przemiennik</div>
+      
+     </ion-text>
+    </div>
+    <div class="tite-box">
+      <h1>Przemienniki krótkofalarskie</h1>
+    </div>
+    <div class="ul">
+      <ion-card class="li" *ngFor="let rpt of fmLink">
+        <ion-card-header>
+          <ion-card-title>{{rpt.s}}</ion-card-title>
+          <ion-card-subtitle>FM-Link</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <div>
+           Wysokość {{rpt.h}} m n.p.m.<br>
+           TX: {{rpt.t}} MHz
+          </div>
+          <ion-button [routerLink]="['/repeater',rpt.n]" fill="outline" class="btn-fmLink">{{rpt.n}}</ion-button>
+        </ion-card-content>
+      </ion-card>   
+    </div>
+
+  <ion-row>
+    <ion-col>
+      <ion-card class="card-inside-center">
+        <ion-card-header>
+          <ion-card-title>Najnowsze przemienniki</ion-card-title>
+          <ion-card-subtitle>w sieci FM Poland</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <div *ngFor="let rpt of fmPoland"><a [routerLink]="repeaterLink(rpt.i)">{{rpt.i}}</a> {{rpt.p}}<span *ngIf="rpt.x">, {{rpt.x.toFixed(4)}} MHz</span></div>
+          <div class="fmpoland-show-all"><a  [routerLink]="['/repeaters-type','fm-poland','all']">Pokaż wszystkie</a></div>
+        </ion-card-content>
+      </ion-card>  
+      <div class="box-db-update-info">
+        <ion-card  style="width: 330px" >
+          <ion-card-header>
+            <ion-card-title>Aktualizacja bazy przemienników</ion-card-title>
+            <ion-card-subtitle>2025-11-25 (DMR i fmPoland)</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>          
+      </div>       
+    </ion-col>
+    <ion-col>
+      <ion-card  class="card-inside-center">
+        <ion-card-header>
+          <ion-card-title>Przemienniki DMR</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div *ngFor="let rpt of dmrLink"><a [routerLink]="['/repeaters-type','dmr',rpt.c]">{{rpt.name}}</a></div>
+        </ion-card-content>
+      </ion-card>        
+     
+    </ion-col>
+  </ion-row> 
+  <div class="end-page-margin">&nbsp;</div>     
+  </ion-grid>
+</ion-content>
